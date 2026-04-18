@@ -1,8 +1,3 @@
-/* ============================================================
-   TEATRO-UNA — Hoja de estilos principal
-   ============================================================ */
-
-/* ---------- Variables globales ---------- */
 :root {
     --bg:           #0a0a1a;
     --bg-2:         #12122a;
@@ -20,7 +15,6 @@
     --ease:         all .25s ease;
 }
 
-/* ---------- Reset base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -32,9 +26,6 @@ body {
     flex-direction: column;
 }
 
-/* ============================================================
-   HEADER
-   ============================================================ */
 .theater-header {
     background: linear-gradient(135deg, #08081a 0%, #1a1a3e 50%, #08081a 100%);
     border-bottom: 2px solid var(--accent);
@@ -44,7 +35,6 @@ body {
     overflow: hidden;
 }
 
-/* Resplandor central suave */
 .theater-header::before {
     content: '';
     position: absolute;
@@ -84,9 +74,6 @@ body {
     text-transform: uppercase;
 }
 
-/* ============================================================
-   MAIN
-   ============================================================ */
 .theater-main {
     flex: 1;
     width: 100%;
@@ -95,9 +82,6 @@ body {
     padding: 2rem 1rem 3rem;
 }
 
-/* ============================================================
-   ESCENARIO
-   ============================================================ */
 .stage-container { margin-bottom: 1.4rem; }
 
 .stage-curtains {
@@ -127,7 +111,6 @@ body {
     overflow: hidden;
 }
 
-/* línea dorada superior */
 .stage::before {
     content: '';
     position: absolute;
@@ -136,7 +119,6 @@ body {
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 
-/* franja roja inferior (boca del escenario) */
 .stage::after {
     content: '';
     position: absolute;
@@ -154,9 +136,6 @@ body {
     text-shadow: 0 0 18px rgba(212,175,55,.8);
 }
 
-/* ============================================================
-   LEYENDA
-   ============================================================ */
 .legend-container {
     display: flex;
     justify-content: center;
@@ -184,9 +163,6 @@ body {
 .seat-demo.occupied  { background: var(--red); }
 .seat-demo.suggested { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
 
-/* ============================================================
-   SALA DE ASIENTOS
-   ============================================================ */
 .theater-container {
     display: flex;
     align-items: stretch;
@@ -221,7 +197,6 @@ body {
     box-shadow: inset 0 0 50px rgba(0,0,0,.55);
 }
 
-/* Fila */
 .row {
     display: flex;
     align-items: center;
@@ -248,13 +223,11 @@ body {
     flex-wrap: nowrap;
 }
 
-/* Pasillo central entre columnas 5 y 6 */
 .aisle-gap {
     width: 18px;
     flex-shrink: 0;
 }
 
-/* ---- Asiento ---- */
 .seat {
     width: 34px;
     height: 34px;
@@ -273,7 +246,6 @@ body {
     flex-shrink: 0;
 }
 
-/* pata del asiento */
 .seat::after {
     content: '';
     position: absolute;
@@ -313,9 +285,6 @@ body {
     50%      { box-shadow: 0 0 26px rgba(251,191,36,.95), 0 6px 18px rgba(0,0,0,.4); }
 }
 
-/* ============================================================
-   PANEL DE CONTROL
-   ============================================================ */
 .control-panel { margin-bottom: 2rem; }
 
 .control-card {
@@ -383,7 +352,6 @@ body {
     justify-content: center;
 }
 
-/* Botones */
 .btn-theater {
     padding: .58rem 1.15rem;
     border: none;
@@ -433,7 +401,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Mensajes */
 .message-area {
     min-height: 36px;
     margin-top: 1.1rem;
@@ -455,7 +422,6 @@ body {
 .message-success { color: #86efac; background: rgba(34,197,94,.12);   border: 1px solid rgba(34,197,94,.25); }
 .message-error   { color: #fca5a5; background: rgba(239,68,68,.12);   border: 1px solid rgba(239,68,68,.25); }
 
-/* Resumen de reserva */
 .reservation-summary {
     margin-top: 1rem;
     padding: 1rem 1.2rem;
@@ -486,9 +452,6 @@ body {
     font-weight: 700;
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
 .theater-footer {
     background: #050510;
     border-top: 2px solid var(--accent);
@@ -535,23 +498,20 @@ body {
     letter-spacing: 1px;
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 768px) {
-    .theater-title   { letter-spacing: 5px; }
-    .seat            { width: 28px; height: 28px; font-size: .5rem; }
-    .seating-area    { padding: 1rem .8rem; }
-    .theater-container { gap: .2rem; }
-    .side-aisle      { display: none; }
-    .control-form    { flex-direction: column; align-items: center; }
-    .footer-info     { flex-direction: column; gap: .8rem; }
+    .theater-title      { letter-spacing: 5px; }
+    .seat               { width: 28px; height: 28px; font-size: .5rem; }
+    .seating-area       { padding: 1rem .8rem; }
+    .theater-container  { gap: .2rem; }
+    .side-aisle         { display: none; }
+    .control-form       { flex-direction: column; align-items: center; }
+    .footer-info        { flex-direction: column; gap: .8rem; }
 }
 
 @media (max-width: 500px) {
-    .seat         { width: 24px; height: 24px; }
-    .seats-row    { gap: .22rem; }
-    .row          { gap: .22rem; margin-bottom: .45rem; }
-    .aisle-gap    { width: 12px; }
-    .legend-container { gap: 1rem; }
+    .seat               { width: 24px; height: 24px; }
+    .seats-row          { gap: .22rem; }
+    .row                { gap: .22rem; margin-bottom: .45rem; }
+    .aisle-gap          { width: 12px; }
+    .legend-container   { gap: 1rem; }
 }

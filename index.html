@@ -3,10 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examen Funda</title>
-    <script src="script.js" defer></script>
+    <title>TEATRO-UNA — Reserva de Asientos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+    <!-- ===== ENCABEZADO ===== -->
+    <header class="theater-header">
+        <div class="header-content">
+            <div class="theater-logo">🎭</div>
+            <h1 class="theater-title">TEATRO-UNA</h1>
+            <p class="theater-subtitle">Universidad Nacional de Costa Rica</p>
+        </div>
+    </header>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="theater-main">
+
+        <!-- Escenario -->
+        <div class="stage-container">
+            <div class="stage-curtains">
+                <div class="curtain-left"></div>
+                <div class="curtain-right"></div>
+            </div>
+            <div class="stage">
+                <span class="stage-label">ESCENARIO</span>
+            </div>
+        </div>
+
+        <!-- Leyenda de estados -->
+        <div class="legend-container">
+            <div class="legend-item">
+                <div class="seat-demo available"></div>
+                <span>Disponible</span>
+            </div>
+            <div class="legend-item">
+                <div class="seat-demo occupied"></div>
+                <span>Ocupado</span>
+            </div>
+            <div class="legend-item">
+                <div class="seat-demo suggested"></div>
+                <span>Sugerido</span>
+            </div>
+        </div>
+
+        <!-- Sala de asientos -->
+        <div class="theater-container">
+            <div class="side-aisle left-aisle">ENTRADA</div>
+            <div id="seating-area" class="seating-area">
+                <!-- Generado dinámicamente por script.js -->
+            </div>
+            <div class="side-aisle right-aisle">SALIDA</div>
+        </div>
+
+        <!-- Panel de control -->
+        <div class="control-panel">
+            <div class="control-card">
+                <h3 class="control-title">Reservar Asientos</h3>
+                <div class="control-form">
+                    <div class="input-group-custom">
+                        <label for="cantidad">Cantidad de asientos:</label>
+                        <input type="number" id="cantidad" min="1" max="10" value="2" class="custom-input">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-theater btn-suggest" onclick="handleSuggest()">
+                            🔍 Sugerir Asientos
+                        </button>
+                        <button id="btn-confirmar" class="btn-theater btn-confirm" onclick="handleConfirm()" disabled>
+                            ✅ Confirmar Reserva
+                        </button>
+                        <button class="btn-theater btn-clear" onclick="handleClear()">
+                            ✖ Limpiar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Área de mensajes -->
+                <div id="message-area" class="message-area"></div>
+
+                <!-- Resumen de asientos sugeridos -->
+                <div id="reservation-summary" class="reservation-summary" style="display:none;"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <footer class="theater-footer">
+        <div class="footer-content">
+            <div class="footer-logo">🎭 TEATRO-UNA</div>
+            <div class="footer-info">
+                <div class="footer-item">
+                    <span class="footer-icon">📍</span>
+                    <span>Campus Omar Dengo, Heredia, Costa Rica</span>
+                </div>
+                <div class="footer-item">
+                    <span class="footer-icon">📞</span>
+                    <span>+506 2277-3000</span>
+                </div>
+                <div class="footer-item">
+                    <span class="footer-icon">✉️</span>
+                    <span>teatro@una.ac.cr</span>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <p>© 2025 TEATRO-UNA — Universidad Nacional de Costa Rica. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

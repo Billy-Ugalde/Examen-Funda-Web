@@ -1,0 +1,557 @@
+/* ============================================================
+   TEATRO-UNA — Hoja de estilos principal
+   ============================================================ */
+
+/* ---------- Variables globales ---------- */
+:root {
+    --bg:           #0a0a1a;
+    --bg-2:         #12122a;
+    --accent:       #d4af37;
+    --accent-light: #f0d060;
+    --green:        #22c55e;
+    --green-h:      #4ade80;
+    --red:          #dc2626;
+    --amber:        #f59e0b;
+    --blue:         #3b82f6;
+    --text:         #e2e8f0;
+    --muted:        #94a3b8;
+    --shadow-gold:  0 0 24px rgba(212,175,55,.25);
+    --radius:       8px;
+    --ease:         all .25s ease;
+}
+
+/* ---------- Reset base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Raleway', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.theater-header {
+    background: linear-gradient(135deg, #08081a 0%, #1a1a3e 50%, #08081a 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 2.5rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Resplandor central suave */
+.theater-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(212,175,55,.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.header-content { position: relative; z-index: 1; }
+
+.theater-logo {
+    font-size: 3rem;
+    margin-bottom: .5rem;
+    display: block;
+    animation: glow-logo 3s ease-in-out infinite;
+}
+
+@keyframes glow-logo {
+    0%,100% { filter: drop-shadow(0 0  6px rgba(212,175,55,.5)); }
+    50%      { filter: drop-shadow(0 0 22px rgba(212,175,55,.95)); }
+}
+
+.theater-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: 10px;
+    text-shadow: 0 0 30px rgba(212,175,55,.5);
+    margin-bottom: .2rem;
+}
+
+.theater-subtitle {
+    font-size: .85rem;
+    color: var(--muted);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+.theater-main {
+    flex: 1;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+}
+
+/* ============================================================
+   ESCENARIO
+   ============================================================ */
+.stage-container { margin-bottom: 1.4rem; }
+
+.stage-curtains {
+    display: flex;
+    height: 32px;
+    margin-bottom: -2px;
+}
+
+.curtain-left,
+.curtain-right {
+    flex: 1;
+    background: linear-gradient(180deg, #5c0000, #8b0000);
+}
+
+.curtain-left  { clip-path: polygon(0 0, 100% 0, 78% 100%, 0 100%); }
+.curtain-right { clip-path: polygon(22% 100%, 0 0, 100% 0, 100% 100%); }
+
+.stage {
+    background: linear-gradient(180deg, #7a3b0e 0%, #9c4f18 40%, #5c2c0a 100%);
+    border-radius: 50% 50% 0 0 / 18px 18px 0 0;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border: 3px solid var(--accent);
+    border-bottom: none;
+    box-shadow: 0 -4px 28px rgba(212,175,55,.25), inset 0 6px 20px rgba(0,0,0,.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* línea dorada superior */
+.stage::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 8%; right: 8%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+/* franja roja inferior (boca del escenario) */
+.stage::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, #6b0000 0%, #a00000 50%, #6b0000 100%);
+}
+
+.stage-label {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 12px;
+    text-shadow: 0 0 18px rgba(212,175,55,.8);
+}
+
+/* ============================================================
+   LEYENDA
+   ============================================================ */
+.legend-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.4rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    font-size: .82rem;
+    color: var(--muted);
+}
+
+.seat-demo {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px 5px 2px 2px;
+    border: 2px solid rgba(255,255,255,.08);
+}
+
+.seat-demo.available { background: var(--green); }
+.seat-demo.occupied  { background: var(--red); }
+.seat-demo.suggested { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
+
+/* ============================================================
+   SALA DE ASIENTOS
+   ============================================================ */
+.theater-container {
+    display: flex;
+    align-items: stretch;
+    gap: .4rem;
+    margin-bottom: 2rem;
+}
+
+.side-aisle {
+    writing-mode: vertical-rl;
+    font-size: .6rem;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding: .5rem .3rem;
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.02);
+    flex-shrink: 0;
+}
+
+.right-aisle { transform: rotate(180deg); }
+
+.seating-area {
+    flex: 1;
+    background: linear-gradient(180deg, rgba(22,22,58,.85) 0%, rgba(10,10,26,.95) 100%);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.2rem;
+    border: 1px solid rgba(212,175,55,.15);
+    box-shadow: inset 0 0 50px rgba(0,0,0,.55);
+}
+
+/* Fila */
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: .55rem;
+    gap: .35rem;
+}
+
+.row-label {
+    font-family: 'Cinzel', serif;
+    font-size: .72rem;
+    color: var(--accent);
+    width: 18px;
+    text-align: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    opacity: .85;
+}
+
+.seats-row {
+    display: flex;
+    gap: .38rem;
+    flex: 1;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+/* Pasillo central entre columnas 5 y 6 */
+.aisle-gap {
+    width: 18px;
+    flex-shrink: 0;
+}
+
+/* ---- Asiento ---- */
+.seat {
+    width: 34px;
+    height: 34px;
+    border-radius: 6px 6px 3px 3px;
+    border: none;
+    cursor: pointer;
+    transition: var(--ease);
+    position: relative;
+    font-size: .58rem;
+    color: rgba(255,255,255,.85);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.1);
+    flex-shrink: 0;
+}
+
+/* pata del asiento */
+.seat::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 3px; right: 3px;
+    height: 4px;
+    background: rgba(0,0,0,.45);
+    border-radius: 0 0 3px 3px;
+}
+
+.seat.available {
+    background: linear-gradient(135deg, #22c55e, #15803d);
+}
+.seat.available:hover {
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 6px 14px rgba(34,197,94,.45);
+    z-index: 2;
+}
+
+.seat.occupied {
+    background: linear-gradient(135deg, #ef4444, #991b1b);
+    cursor: not-allowed;
+    opacity: .75;
+}
+
+.seat.suggested {
+    background: linear-gradient(135deg, #fbbf24, #b45309);
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 0 16px rgba(251,191,36,.65), 0 5px 14px rgba(0,0,0,.3);
+    z-index: 2;
+    animation: pulse-seat 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse-seat {
+    0%,100% { box-shadow: 0 0 10px rgba(251,191,36,.5),  0 5px 12px rgba(0,0,0,.3); }
+    50%      { box-shadow: 0 0 26px rgba(251,191,36,.95), 0 6px 18px rgba(0,0,0,.4); }
+}
+
+/* ============================================================
+   PANEL DE CONTROL
+   ============================================================ */
+.control-panel { margin-bottom: 2rem; }
+
+.control-card {
+    background: linear-gradient(135deg, #10102a, #1c1c42);
+    border: 1px solid rgba(212,175,55,.28);
+    border-radius: 14px;
+    padding: 2rem 1.8rem;
+    box-shadow: 0 12px 40px rgba(0,0,0,.5), var(--shadow-gold);
+}
+
+.control-title {
+    font-family: 'Cinzel', serif;
+    color: var(--accent);
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.control-form {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.input-group-custom {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+
+.input-group-custom label {
+    color: var(--muted);
+    font-size: .9rem;
+    white-space: nowrap;
+}
+
+.custom-input {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(212,175,55,.4);
+    border-radius: var(--radius);
+    color: var(--accent);
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: .45rem .7rem;
+    width: 78px;
+    text-align: center;
+    transition: var(--ease);
+}
+
+.custom-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(212,175,55,.3);
+    background: rgba(212,175,55,.04);
+}
+
+.button-group {
+    display: flex;
+    gap: .7rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Botones */
+.btn-theater {
+    padding: .58rem 1.15rem;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: .85rem;
+    cursor: pointer;
+    transition: var(--ease);
+    letter-spacing: .4px;
+}
+
+.btn-suggest {
+    background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+    color: #fff;
+    border: 1px solid rgba(59,130,246,.4);
+}
+.btn-suggest:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(37,99,235,.4);
+}
+
+.btn-confirm {
+    background: linear-gradient(135deg, var(--accent), #a87c1f);
+    color: #0a0a1a;
+    border: 1px solid rgba(212,175,55,.4);
+}
+.btn-confirm:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(212,175,55,.4);
+}
+.btn-confirm:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+.btn-clear {
+    background: rgba(255,255,255,.05);
+    color: var(--muted);
+    border: 1px solid rgba(255,255,255,.1);
+}
+.btn-clear:hover {
+    background: rgba(255,255,255,.1);
+    color: var(--text);
+    transform: translateY(-2px);
+}
+
+/* Mensajes */
+.message-area {
+    min-height: 36px;
+    margin-top: 1.1rem;
+    text-align: center;
+    font-size: .88rem;
+    transition: var(--ease);
+}
+
+.message-info,
+.message-success,
+.message-error {
+    display: inline-block;
+    padding: .45rem 1rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+}
+
+.message-info    { color: #93c5fd; background: rgba(59,130,246,.12);  border: 1px solid rgba(59,130,246,.25); }
+.message-success { color: #86efac; background: rgba(34,197,94,.12);   border: 1px solid rgba(34,197,94,.25); }
+.message-error   { color: #fca5a5; background: rgba(239,68,68,.12);   border: 1px solid rgba(239,68,68,.25); }
+
+/* Resumen de reserva */
+.reservation-summary {
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    background: rgba(212,175,55,.05);
+    border: 1px solid rgba(212,175,55,.25);
+    border-radius: var(--radius);
+    text-align: center;
+}
+
+.reservation-summary h4 {
+    font-family: 'Cinzel', serif;
+    color: var(--accent);
+    font-size: .88rem;
+    margin-bottom: .5rem;
+    letter-spacing: 1px;
+}
+
+.seat-tag {
+    display: inline-block;
+    background: rgba(212,175,55,.12);
+    border: 1px solid rgba(212,175,55,.35);
+    color: var(--accent);
+    padding: .18rem .5rem;
+    border-radius: 4px;
+    font-size: .75rem;
+    margin: .15rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.theater-footer {
+    background: #050510;
+    border-top: 2px solid var(--accent);
+    padding: 2rem 1rem;
+}
+
+.footer-content {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: var(--accent);
+    letter-spacing: 5px;
+    margin-bottom: 1.2rem;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    color: var(--muted);
+    font-size: .84rem;
+}
+
+.footer-icon { font-size: .95rem; }
+
+.footer-copy {
+    border-top: 1px solid rgba(255,255,255,.05);
+    padding-top: 1rem;
+    color: rgba(255,255,255,.2);
+    font-size: .73rem;
+    letter-spacing: 1px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    .theater-title   { letter-spacing: 5px; }
+    .seat            { width: 28px; height: 28px; font-size: .5rem; }
+    .seating-area    { padding: 1rem .8rem; }
+    .theater-container { gap: .2rem; }
+    .side-aisle      { display: none; }
+    .control-form    { flex-direction: column; align-items: center; }
+    .footer-info     { flex-direction: column; gap: .8rem; }
+}
+
+@media (max-width: 500px) {
+    .seat         { width: 24px; height: 24px; }
+    .seats-row    { gap: .22rem; }
+    .row          { gap: .22rem; margin-bottom: .45rem; }
+    .aisle-gap    { width: 12px; }
+    .legend-container { gap: 1rem; }
+}

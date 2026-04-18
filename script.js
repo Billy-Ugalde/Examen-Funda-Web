@@ -17,6 +17,7 @@ const DEFAULT_OCCUPIED = new Set([
 let seats          = [];
 let suggestedSeats = new Set();
 
+// Construye la matriz de asientos con su estado inicial
 function initSeats() {
     seats = [];
     for (let row = 0; row < NUM_ROWS; row++) {
@@ -30,6 +31,8 @@ function initSeats() {
     suggestedSeats = new Set();
 }
 
+// Busca asientos consecutivos disponibles priorizando la fila más cercana al centro.
+// Recibe la cantidad deseada y devuelve un Set con los IDs sugeridos, o Set vacío si no hay.
 function suggest(cantidad) {
     if (cantidad < 1 || cantidad > SEATS_PER_ROW) {
         return new Set();
@@ -70,12 +73,14 @@ function suggest(cantidad) {
     return new Set();
 }
 
+// Convierte un ID numérico en etiqueta legible, ej. ID 43 → "E3"
 function seatLabel(id) {
     const rowIdx = Math.floor((id - 1) / SEATS_PER_ROW);
     const colIdx = (id - 1) % SEATS_PER_ROW;
     return `${ROW_LABELS[rowIdx]}${colIdx + 1}`;
 }
 
+// Genera el HTML de la sala completa y lo vuelca en #seating-area
 function renderSeats() {
     const area = document.getElementById('seating-area');
     area.innerHTML = '';
@@ -131,6 +136,7 @@ function renderSeats() {
     });
 }
 
+// Lee la cantidad ingresada, ejecuta suggest() y muestra los asientos sugeridos
 function handleSuggest() {
     const input    = document.getElementById('cantidad');
     const cantidad = parseInt(input.value, 10);
@@ -171,6 +177,7 @@ function handleSuggest() {
         `<p>${labels.map(l => `<span class="seat-tag">${l}</span>`).join('')}</p>`;
 }
 
+// Marca los asientos sugeridos como ocupados y actualiza la vista
 function handleConfirm() {
     if (suggestedSeats.size === 0) return;
 
